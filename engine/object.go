@@ -25,3 +25,14 @@ func (o *Object) SetPosition(position *utils.Vector) {
 func (o *Object) GetPosition() *utils.Vector {
 	return o.Position
 }
+
+func (o *Object) Update() {
+
+}
+
+func (o *Object) FixedUpdate() {
+
+	if o.RigidBody != nil {
+		o.RigidBody.UpdatePhysics()
+	}
+}

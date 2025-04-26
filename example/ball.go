@@ -40,12 +40,12 @@ func NewBall() *Ball {
 }
 
 func (b *Ball) FixedUpdate() {
-	b.object.RigidBody.AddForce(utils.Vector{X: 0.01, Y: 0})
-	b.object.RigidBody.UpdatePhysics()
+	b.object.FixedUpdate()
+	b.object.RigidBody.AddForce(utils.Vector{X: 0.1, Y: 0})
 }
 
 func (b *Ball) Update() {
-
+	b.object.Update()
 }
 
 func (b *Ball) Draw(screen *ebiten.Image) {

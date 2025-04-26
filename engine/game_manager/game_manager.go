@@ -4,13 +4,12 @@ import (
 	"GoPhysics/engine/time_manager"
 	"GoPhysics/example"
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 const fixedDeltaTime = 1.0 / 60.0
 
 var Game = GameManager{}
-var Ball = example.NewBall()
+var UpdatableObjects = []UpdatableObject{example.NewBall()}
 
 type GameManager struct {
 }
@@ -23,12 +22,17 @@ func (g *GameManager) Update() error {
 		time_manager.Time.Accumulator -= fixedDeltaTime
 	}
 
+	for _, updatableObject := range UpdatableObjects {
+		updatableObject.Update()
+	}
+
 	return nil
 }
 
 func (g *GameManager) Draw(screen *ebiten.Image) {
-	ebitenutil.DebugPrint(screen, "Hello, World!")
-	Ball.Draw(screen)
+	for _, updatableObject := range UpdatableObjects {
+		updatableObject.Draw(screen)
+	}
 }
 
 func (g *GameManager) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
@@ -36,5 +40,7 @@ func (g *GameManager) Layout(outsideWidth, outsideHeight int) (screenWidth, scre
 }
 
 func (g *GameManager) FixedUpdate() {
-	Ball.FixedUpdate()
+	for _, updatableObject := range UpdatableObjects {
+		updatableObject.FixedUpdate()
+	}
 }
