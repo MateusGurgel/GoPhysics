@@ -6,15 +6,18 @@ import (
 )
 
 type RigidBody struct {
-	object       *Object
-	velocity     *utils.Vector
-	acceleration *utils.Vector
-	mass         float64
-	airDrag      float64
+	object   *Object
+	velocity *utils.Vector
+	mass     float64
+	airDrag  float64
 }
 
 func NewRigidBody(object *Object, mass float64, airDrag float64) *RigidBody {
 	return &RigidBody{object: object, mass: mass, airDrag: airDrag, velocity: &utils.Vector{}}
+}
+
+func (rb *RigidBody) SetVelocity(velocity *utils.Vector) {
+	rb.velocity = velocity
 }
 
 func (rb *RigidBody) AddForce(force utils.Vector) {
@@ -22,9 +25,9 @@ func (rb *RigidBody) AddForce(force utils.Vector) {
 	deltaTime := time_manager.Time.DeltaTime
 
 	velocityProduct := accelerationProduct.MultiplyByScalar(deltaTime)
+	finalVelocity := velocityProduct.Add(rb.velocity)
 
-	newPosition := rb.object.Position.Add(velocityProduct)
-	rb.object.SetPosition(newPosition)
+	rb.SetVelocity(finalVelocity)
 }
 
 func (rb *RigidBody) ApplyVelocityOnObject() {
@@ -33,5 +36,5 @@ func (rb *RigidBody) ApplyVelocityOnObject() {
 }
 
 func (rb *RigidBody) UpdatePhysics() {
-	rb.UpdatePhysics()
+	rb.ApplyVelocityOnObject()
 }

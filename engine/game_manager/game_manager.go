@@ -36,4 +36,5 @@ func (g *GameManager) Layout(outsideWidth, outsideHeight int) (screenWidth, scre
 }
 
 func (g *GameManager) FixedUpdate() {
+	Ball.FixedUpdate()
 }

@@ -19,7 +19,7 @@ func (v Vector) GetEuclideanQuadraticDistance(target *Vector) float64 {
 }
 
 func (v *Vector) Add(o *Vector) *Vector {
-	return &Vector{X: o.X + v.X, Y: o.X + v.X}
+	return &Vector{X: o.X + v.X, Y: o.Y + v.Y}
 }
 
 func (v *Vector) Divide(scalar float64) *Vector {

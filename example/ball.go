@@ -39,6 +39,11 @@ func NewBall() *Ball {
 	}
 }
 
+func (b *Ball) FixedUpdate() {
+	b.object.RigidBody.AddForce(utils.Vector{X: 0.01, Y: 0})
+	b.object.RigidBody.UpdatePhysics()
+}
+
 func (b *Ball) Update() {
 
 }
