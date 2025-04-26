@@ -4,6 +4,6 @@ import (
 	"GoPhysics/engine/utils"
 )
 
-type BaseCollider interface {
+type Collider interface {
 	CheckCollisionWithCircle(SelfPosition utils.Vector, TargetPosition utils.Vector, r float32) bool
 }

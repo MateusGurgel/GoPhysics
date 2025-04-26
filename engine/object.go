@@ -6,11 +6,11 @@ import (
 
 type Object struct {
 	Position  *utils.Vector
-	Collider  *BaseCollider
+	Collider  *Collider
 	RigidBody *RigidBody
 }
 
-func NewObject(position *utils.Vector, collider *BaseCollider, rigidBody *RigidBody) *Object {
+func NewObject(position *utils.Vector, collider *Collider, rigidBody *RigidBody) *Object {
 	return &Object{Position: position, Collider: collider, RigidBody: rigidBody}
 }
 
