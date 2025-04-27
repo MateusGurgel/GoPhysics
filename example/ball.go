@@ -2,6 +2,7 @@ package example
 
 import (
 	"GoPhysics/engine"
+	"GoPhysics/engine/colliders"
 	"GoPhysics/engine/utils"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -31,8 +32,10 @@ func NewBall() *Ball {
 	)
 
 	rb := engine.NewRigidBody(object, 1, 0.1)
+	collider := colliders.NewCircleCollider(10)
 
 	object.SetRigidBody(rb)
+	object.AddCollider(collider)
 
 	return &Ball{
 		object: object,

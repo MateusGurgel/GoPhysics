@@ -6,12 +6,12 @@ import (
 
 type Object struct {
 	Position  *utils.Vector
-	Collider  *Collider
 	RigidBody *RigidBody
+	Colliders []Collider
 }
 
-func NewObject(position *utils.Vector, collider *Collider, rigidBody *RigidBody) *Object {
-	return &Object{Position: position, Collider: collider, RigidBody: rigidBody}
+func NewObject(position *utils.Vector, collider []Collider, rigidBody *RigidBody) *Object {
+	return &Object{Position: position, Colliders: collider, RigidBody: rigidBody}
 }
 
 func (o *Object) SetRigidBody(rigidBody *RigidBody) {
@@ -20,6 +20,10 @@ func (o *Object) SetRigidBody(rigidBody *RigidBody) {
 
 func (o *Object) SetPosition(position *utils.Vector) {
 	o.Position = position
+}
+
+func (o *Object) AddCollider(collider Collider) {
+	o.Colliders = append(o.Colliders, collider)
 }
 
 func (o *Object) GetPosition() *utils.Vector {
