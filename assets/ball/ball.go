@@ -19,7 +19,7 @@ type Ball struct {
 func NewBall() *Ball {
 
 	object := &Ball{
-		&utils.Vector{X: 120, Y: 0},
+		&utils.Vector{X: 120, Y: 100},
 		nil,
 		nil,
 	}
@@ -38,7 +38,7 @@ func (o *Ball) Update() {
 
 func (o *Ball) FixedUpdate() {
 	o.RigidBody.UpdatePhysics()
-	o.RigidBody.AddForce(utils.Vector{X: 0.1, Y: 0})
+	o.RigidBody.AddForce(utils.Vector{X: 15, Y: 0})
 }
 
 func (o *Ball) Draw(screen *ebiten.Image) {

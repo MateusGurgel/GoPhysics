@@ -2,6 +2,7 @@ package game_manager
 
 import (
 	"GoPhysics/assets/ball"
+	"GoPhysics/engine/colliders"
 	"GoPhysics/engine/time_manager"
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -42,6 +43,8 @@ func (g *GameManager) Layout(outsideWidth, outsideHeight int) (screenWidth, scre
 }
 
 func (g *GameManager) FixedUpdate() {
+	colliders.CM.CheckCollisions()
+
 	for _, updatableObject := range UpdatableObjects {
 		updatableObject.FixedUpdate()
 	}
