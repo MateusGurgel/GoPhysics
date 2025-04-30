@@ -1,4 +1,4 @@
-package engine
+package rigidbody
 
 import (
 	"GoPhysics/engine/time_manager"

@@ -3,6 +3,7 @@ package ball
 import (
 	"GoPhysics/engine"
 	"GoPhysics/engine/colliders"
+	"GoPhysics/engine/rigidbody"
 	"GoPhysics/engine/utils"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -11,7 +12,7 @@ import (
 
 type Ball struct {
 	Position  *utils.Vector
-	RigidBody *engine.RigidBody
+	RigidBody *rigidbody.RigidBody
 	Colliders []engine.Collider
 }
 
@@ -23,7 +24,7 @@ func NewBall() *Ball {
 		nil,
 	}
 
-	rb := engine.NewRigidBody(object, 20, 0.1)
+	rb := rigidbody.NewRigidBody(object, 20, 0.1)
 	collider := colliders.NewCircleCollider(10)
 
 	object.RigidBody = rb

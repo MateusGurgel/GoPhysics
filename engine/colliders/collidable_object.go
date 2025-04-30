@@ -1,10 +1,10 @@
-package engine
+package colliders
 
 import (
 	"GoPhysics/engine/utils"
 )
 
-type PhysicsObject interface {
+type CollidableObject interface {
 	GetPosition() *utils.Vector
 	SetPosition(position *utils.Vector)
 }
