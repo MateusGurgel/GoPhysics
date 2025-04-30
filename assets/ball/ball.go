@@ -24,7 +24,7 @@ func NewBall() *Ball {
 		nil,
 	}
 
-	rb := rigidbody.NewRigidBody(object, 20, 0.1)
+	rb := rigidbody.NewRigidBody(object, 20, 0.1, false)
 	collider := colliders.NewCircleCollider(10)
 
 	object.RigidBody = rb

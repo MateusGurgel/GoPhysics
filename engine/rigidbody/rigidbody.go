@@ -6,14 +6,15 @@ import (
 )
 
 type RigidBody struct {
-	object   PhysicsObject
-	velocity *utils.Vector
-	mass     float64
-	airDrag  float64
+	object     PhysicsObject
+	velocity   *utils.Vector
+	mass       float64
+	airDrag    float64
+	hasGravity bool
 }
 
-func NewRigidBody(object PhysicsObject, mass float64, airDrag float64) *RigidBody {
-	return &RigidBody{object: object, mass: mass, airDrag: airDrag, velocity: &utils.Vector{}}
+func NewRigidBody(object PhysicsObject, mass float64, airDrag float64, hasGravity bool) *RigidBody {
+	return &RigidBody{object: object, mass: mass, airDrag: airDrag, velocity: &utils.Vector{}, hasGravity: hasGravity}
 }
 
 func (rb *RigidBody) SetVelocity(velocity *utils.Vector) {
@@ -42,6 +43,10 @@ func (rb *RigidBody) ApplyVelocityOnObject() {
 }
 
 func (rb *RigidBody) UpdatePhysics() {
-	rb.AddGravity()
+
+	if rb.hasGravity {
+		rb.AddGravity()
+	}
+
 	rb.ApplyVelocityOnObject()
 }
