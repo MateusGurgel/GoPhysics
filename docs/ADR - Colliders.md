@@ -22,7 +22,7 @@ Desvantagens:
 # Solução
 
 Propor interfaces para a criação de colliders, que ocultem atributos como dimensões dos objetos, facilitando o uso e eliminando dependências cíclicas.
-Architectural Decision Records
+
 
 # Consequências
 

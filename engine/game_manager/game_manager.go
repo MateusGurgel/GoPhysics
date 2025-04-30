@@ -1,15 +1,15 @@
 package game_manager
 
 import (
+	"GoPhysics/assets/ball"
 	"GoPhysics/engine/time_manager"
-	"GoPhysics/example"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 const fixedDeltaTime = 1.0 / 60.0
 
 var Game = GameManager{}
-var UpdatableObjects = []UpdatableObject{example.NewBall()}
+var UpdatableObjects = []UpdatableObject{ball.NewBall()}
 
 type GameManager struct {
 }
@@ -30,9 +30,11 @@ func (g *GameManager) Update() error {
 }
 
 func (g *GameManager) Draw(screen *ebiten.Image) {
+
 	for _, updatableObject := range UpdatableObjects {
 		updatableObject.Draw(screen)
 	}
+
 }
 
 func (g *GameManager) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
