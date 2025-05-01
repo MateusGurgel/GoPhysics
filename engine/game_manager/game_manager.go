@@ -4,13 +4,17 @@ import (
 	"GoPhysics/assets/ball"
 	"GoPhysics/engine/colliders"
 	"GoPhysics/engine/time_manager"
+	"GoPhysics/engine/utils"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 const fixedDeltaTime = 1.0 / 60.0
 
 var Game = GameManager{}
-var UpdatableObjects = []UpdatableObject{ball.NewBall()}
+var UpdatableObjects = []UpdatableObject{
+	ball.NewBall(utils.Vector{X: 10, Y: 0}, true),
+	ball.NewBall(utils.Vector{X: 200, Y: 0}, false),
+}
 
 type GameManager struct {
 }

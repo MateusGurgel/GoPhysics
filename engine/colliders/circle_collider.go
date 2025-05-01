@@ -6,16 +6,17 @@ type CircleCollider struct {
 	Object    CollidableObject
 }
 
-func NewCircleCollider(radius float64) *CircleCollider {
+func NewCircleCollider(object CollidableObject, radius float64) *CircleCollider {
 
-	collider := &CircleCollider{Radius: radius}
+	collider := &CircleCollider{Radius: radius, Object: object}
 
 	CM.AddCollider(collider)
 
-	return &CircleCollider{Radius: radius}
+	return collider
 }
 
 func (c *CircleCollider) CheckCollisionWithCircle(Other *CircleCollider) bool {
+
 	quadraticDistance := c.Object.GetPosition().GetEuclideanQuadraticDistance(Other.Object.GetPosition())
 	radiusSum := c.Radius + Other.Radius
 

@@ -14,18 +14,20 @@ type Ball struct {
 	Position  *utils.Vector
 	RigidBody *rigidbody.RigidBody
 	Colliders []engine.Collider
+	forceLeft bool
 }
 
-func NewBall() *Ball {
+func NewBall(position utils.Vector, forceLeft bool) *Ball {
 
 	object := &Ball{
-		&utils.Vector{X: 120, Y: 100},
+		&position,
 		nil,
 		nil,
+		forceLeft,
 	}
 
 	rb := rigidbody.NewRigidBody(object, 20, 0.1, false)
-	collider := colliders.NewCircleCollider(10)
+	collider := colliders.NewCircleCollider(object, 10)
 
 	object.RigidBody = rb
 	object.Colliders = append(object.Colliders, collider)
@@ -38,7 +40,13 @@ func (o *Ball) Update() {
 
 func (o *Ball) FixedUpdate() {
 	o.RigidBody.UpdatePhysics()
-	o.RigidBody.AddForce(utils.Vector{X: 15, Y: 0})
+
+	if o.forceLeft {
+		o.RigidBody.AddForce(utils.Vector{X: 15, Y: 0})
+	} else {
+		o.RigidBody.AddForce(utils.Vector{X: -15, Y: 0})
+	}
+
 }
 
 func (o *Ball) Draw(screen *ebiten.Image) {
