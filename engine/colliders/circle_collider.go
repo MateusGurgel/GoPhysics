@@ -6,9 +6,9 @@ type CircleCollider struct {
 	Object    CollidableObject
 }
 
-func NewCircleCollider(object CollidableObject, radius float64) *CircleCollider {
+func NewCircleCollider(object CollidableObject, radius float64, observer []Observer) *CircleCollider {
 
-	collider := &CircleCollider{Radius: radius, Object: object}
+	collider := &CircleCollider{Radius: radius, Object: object, Observers: observer}
 
 	CM.AddCollider(collider)
 

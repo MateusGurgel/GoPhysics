@@ -27,12 +27,21 @@ func NewBall(position utils.Vector, forceLeft bool) *Ball {
 	}
 
 	rb := rigidbody.NewRigidBody(object, 20, 0.1, false)
-	collider := colliders.NewCircleCollider(object, 10)
+
+	collider := colliders.NewCircleCollider(object, 20, []colliders.Observer{object})
 
 	object.RigidBody = rb
 	object.Colliders = append(object.Colliders, collider)
 
 	return object
+}
+
+func (o *Ball) OnTrigger() {
+	if o.forceLeft {
+		o.RigidBody.AddForce(utils.Vector{X: -150, Y: 0})
+	} else {
+		o.RigidBody.AddForce(utils.Vector{X: 150, Y: 0})
+	}
 }
 
 func (o *Ball) Update() {
@@ -42,9 +51,9 @@ func (o *Ball) FixedUpdate() {
 	o.RigidBody.UpdatePhysics()
 
 	if o.forceLeft {
-		o.RigidBody.AddForce(utils.Vector{X: 15, Y: 0})
+		o.RigidBody.AddForce(utils.Vector{X: 20, Y: 0})
 	} else {
-		o.RigidBody.AddForce(utils.Vector{X: -15, Y: 0})
+		o.RigidBody.AddForce(utils.Vector{X: -20, Y: 0})
 	}
 
 }
